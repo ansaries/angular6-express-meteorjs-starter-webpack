@@ -15,7 +15,7 @@ import * as fromRoot from './reducers';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  mobile = true;
+  mobile = false;
   sideNavMode = MOBILE ? 'over' : 'side';
   views = views;
 

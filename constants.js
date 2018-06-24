@@ -3,10 +3,10 @@ const root = require('./helpers.js').root
 const ip = require('ip');
 
 exports.HOST = ip.address();
-exports.DEV_PORT = 3000;
-exports.E2E_PORT = 4201;
-exports.PROD_PORT = 8088;
-exports.UNIVERSAL_PORT = 80;
+exports.DEV_PORT = process.env.PORT || 3000;
+exports.E2E_PORT = process.env.PORT || 4201;
+exports.PROD_PORT = process.env.PORT || 8088;
+exports.UNIVERSAL_PORT = process.env.PORT || 8000;
 
 exports.SHOW_WEBPACK_BUNDLE_ANALYZER = false;
 

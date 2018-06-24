@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 
 declare global {
     interface GroundBaseCollection<T> extends Mongo.Collection<any> {
-        orgFind(selector?: Mongo.Selector<T> | Mongo.ObjectID | string, options?: {
+        orgFind(selector?: Mongo.ObjectID | string | any, options?: {
             sort?: Mongo.SortSpecifier;
             skip?: number;
             limit?: number;
@@ -10,7 +10,7 @@ declare global {
             reactive?: boolean;
             transform?: Function;
         }): Mongo.Cursor<T>;
-        orgFindOne(selector?: Mongo.Selector<T> | Mongo.ObjectID | string, options?: {
+        orgFindOne(selector?: Mongo.ObjectID | string | any, options?: {
             sort?: Mongo.SortSpecifier;
             skip?: number;
             fields?: Mongo.FieldSpecifier;

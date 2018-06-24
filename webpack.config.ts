@@ -352,14 +352,14 @@ const serverConfig: WebpackConfig = {
   ],
   module: {
     rules: []
-  },
-
+  }
 };
 
 const defaultConfig = {
   resolve: {
     extensions: ['.ts', '.js', '.json']
-  }
+  },
+  externals: [resolveExternals],
 };
 
 if (!UNIVERSAL && !SERVER) {

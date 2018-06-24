@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
-import { Services } from '../api/collections';
-import { MeteorObservable } from 'meteor-rxjs';
+// import { Services } from '../api/collections';
 import { isPlatformBrowser } from '@angular/common';
+// import { MeteorObservable } from 'meteor-rxjs/dist/MeteorObservable';
 @Component({
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',
@@ -19,6 +19,8 @@ export class DashboardComponent implements OnDestroy, OnInit {
  }
  ngOnInit() {
   if (isPlatformBrowser(this.platformId)) {
+    const Services = require('../api/collections').Services;
+    const MeteorObservable = require('meteor-rxjs').MeteorObservable;
     MeteorObservable.subscribe('services').subscribe(() => {
       this.services = Services.find();
     });

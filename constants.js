@@ -57,7 +57,8 @@ exports.MY_COPY_FOLDERS = [
   // use this for folders you want to be copied in to Client dist
   // src/assets and index.html are already copied by default.
   // format is { from: 'folder_name', to: 'folder_name' }
-  { from: 'app.yaml', to: 'dist/app.yaml'}
+  { from: 'app.yaml', to: 'app.yaml'},
+  { from: 'src/init.js', to: 'init.js'}
 ]
 
 exports.MY_POLYFILL_DLLS = [

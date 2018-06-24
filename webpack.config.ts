@@ -105,6 +105,7 @@ const DLL_VENDORS = [
   'rxjs',
   'web-animations-js',
   'zone.js',
+  'meteor-rxjs',
   ...MY_VENDOR_DLLS
 ];
 

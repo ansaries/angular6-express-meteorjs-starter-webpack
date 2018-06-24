@@ -118,7 +118,7 @@
     "hammerjs": "~2.0.8",
     "ip": "~1.1.5",
     "meteor-client": "git+https://github.com/ansaries/meteor-client.git",
-    "meteor-rxjs": "^0.4.8",
+    "meteor-rxjs": "0.4.8",
     "methods": "1.1.2",
     "ngrx-store-freeze": "~0.2.3",
     "ngrx-store-logger": "~0.2.1",
@@ -202,7 +202,7 @@
     "webpack-node-externals": "^1.6.0"
   },
   "engines": {
-    "node": "8.10.0"    
+    "node": "8.10.0"
   },
   "license": "Apache-2.0",
   "bugs": {

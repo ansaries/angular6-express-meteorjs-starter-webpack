@@ -7,7 +7,7 @@
 
     
     if(stagging) {
-    url= "http://foctest.meteorapp.com"
+    url= "https://foctest.meteorapp.com"
     if(local)
         url = "http://localhost:3005";        
     // promoUrl = 'http://localhost:3004';

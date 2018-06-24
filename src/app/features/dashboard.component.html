@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
   <h3> Welcome to the Dashboard {{user.name}}!</h3>
 </header>
 <section>
@@ -13,4 +13,15 @@
   </form>
   <br><br>
     <button id="my-logout-button" mat-raised-button color="accent" (click)="logout()">Logout</button>
-</section>
+</section> -->
+
+<div class="container">
+  <mat-list>
+    Services Come here...
+    <mat-list-item *ngFor="let service of services|async">
+      <div class="name">
+        {{service?.name}}
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>

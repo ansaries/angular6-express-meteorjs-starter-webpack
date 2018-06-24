@@ -1,15 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
-import { TransferHttp } from '../../modules/transfer-http/transfer-http';
-
-import { AppState } from '../reducers';
-import { Store } from '@ngrx/store';
-import { User } from '../user/user.model';
-
-import * as UserActions from '../user/user.actions';
-
+import { Services } from '../api/collections';
+import { MeteorObservable } from 'meteor-rxjs';
 @Component({
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',
@@ -17,53 +10,16 @@ import * as UserActions from '../user/user.actions';
 })
 
 export class DashboardComponent implements OnDestroy, OnInit {
-  destroyed$: Subject<any> = new Subject<any>();
-  form: FormGroup;
-  nameLabel = 'Enter your name';
-  testSub$: Observable<string>;
-  user: User;
-  user$: Observable<User>;
-  constructor(
-    private fb: FormBuilder,
-    private http: TransferHttp,
-    private store: Store<AppState>
-  ) {
-    this.form = fb.group({
-      name: ''
-    });
-    this.user$ = this.store.select(state => state.user.user);
-    this.user$.pipe(takeUntil(this.destroyed$))
-      .subscribe(user => { this.user = user; });
-  }
+ services: Observable<any>;
+ constructor() {
 
-  ngOnInit() {
-    this.form.get('name').setValue(this.user.name);
-    if (UNIVERSAL) {
-      this.testSub$ = this.http.get('http://localhost:8000/data').pipe(map(data => {
-        return `${data.greeting} ${data.name}`;
-      }));
-    }
-  }
+ }
+ ngOnInit() {
+  MeteorObservable.subscribe('services').subscribe(() => {
+    this.services = Services.find();
+  });
+ }
+ ngOnDestroy() {
 
-  clearName() {
-    this.store.dispatch(new UserActions.EditUser(
-      Object.assign({}, this.user, { name: '' }
-      )));
-
-    this.form.get('name').setValue('');
-  }
-
-  logout() {
-    this.store.dispatch(new UserActions.Logout());
-  }
-
-  submitState() {
-    this.store.dispatch(new UserActions.EditUser(
-      Object.assign({}, this.user, { name: this.form.get('name').value }
-      )));
-  }
-
-  ngOnDestroy() {
-    this.destroyed$.next();
-  }
+ }
 }

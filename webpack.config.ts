@@ -4,6 +4,7 @@
  * If more constants should be added file an issue or create PR.
  */
 
+
 import {
   DEV_PORT, PROD_PORT, UNIVERSAL_PORT, EXCLUDE_SOURCE_MAPS, HOST,
   USE_DEV_SERVER_PROXY, DEV_SERVER_PROXY_CONFIG, DEV_SERVER_WATCH_OPTIONS,
@@ -256,7 +257,7 @@ const clientConfig = function webpackConfig(): WebpackConfig {
       })
     );
   }
-
+  config.externals = [resolveExternals];
   if (DLL) {
     config.entry = {
       app_assets: ['./src/main.browser'],
@@ -372,4 +373,21 @@ if (!UNIVERSAL && !SERVER) {
     webpackMerge({}, defaultConfig, commonConfig, clientConfig),
     webpackMerge({}, defaultConfig, commonConfig, serverConfig)
   ];
+}
+
+
+function resolveExternals(context, request, callback) {
+  return resolveMeteor(request, callback) ||
+      callback();
+}
+
+function resolveMeteor(request, callback) {
+  const match = request.match(/^meteor\/(.+)$/);
+  const pack = match && match[1];
+  if (pack) {
+      const pkg = 'Package["' + pack + '"]';
+      console.log('Config:', pkg);
+      callback(null, 'Package["' + pack + '"]');
+      return true;
+  }
 }

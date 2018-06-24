@@ -8,7 +8,8 @@
     "url": "git+https://github.com/qdouble/angular-webpack-starter.git"
   },
   "scripts": {
-    "postinstall": "npm run sass && npm run build:dll",
+    "postinstall": "npm run build:universal:aot",
+    "postinstall1": "npm run sass && npm run build:dll",
     "rimraf": "rimraf",
     "webdev": "webpack-dev-server",
     "webdev:hmr": "npm run webdev -- --hotOnly --hot --inline",
@@ -188,6 +189,10 @@
     "webpack-md5-hash": "^0.0.6",
     "webpack-merge": "~4.1.2",
     "webpack-node-externals": "^1.6.0"
+  },
+  "engines": {
+    "node": "8.10.0",
+    "npm": "5.6.0"
   },
   "license": "Apache-2.0",
   "bugs": {

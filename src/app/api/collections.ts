@@ -1,11 +1,12 @@
 import { MongoObservable, MeteorObservable } from 'meteor-rxjs';
 // const Mongo = Package['mongo'].Mongo;
-// const UploadFS = Package['jalik:ufs'].UploadFS;
+const UploadFS = Package['jalik:ufs'].UploadFS;
 // import { SERVICE, CATEGORY, LEAD, FORM, QUOTE, IMAGE, THUMB, THREAD, MESSAGE } from './models';
 import { DEFAULT_PICTURE_URL } from './models';
 
 import { Mongo } from 'meteor/mongo';
-import { UploadFS } from 'meteor/jalik:ufs';
+// import { UploadFS } from 'meteor/jalik:ufs';
+
 
 
 // An interface to create orgFind Method in Mong.Collection.

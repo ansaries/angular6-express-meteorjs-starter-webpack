@@ -179,6 +179,14 @@ const commonConfig = function webpackConfig(): WebpackConfig {
     ...MY_CLIENT_PLUGINS
   ];
 
+  if (UNIVERSAL || SERVER) {
+    config.plugins.push(
+      new ScriptExtPlugin({
+        defaultAttribute: 'defer'
+      })
+    );
+  }
+
   if (DEV_SERVER) {
     config.plugins.push(
       new DllReferencePlugin({
@@ -255,13 +263,7 @@ const clientConfig = function webpackConfig(): WebpackConfig {
     );
   }
 
-  if (UNIVERSAL || SERVER) {
-    config.plugins.push(
-      new ScriptExtPlugin({
-        defaultAttribute: 'defer'
-      })
-    );
-  }
+ 
   config.externals = [resolveExternals];
   if (DLL) {
     config.entry = {

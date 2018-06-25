@@ -32,7 +32,6 @@ export class DataService {
         const methodArgs = args.slice(1, args.length);
         console.log(methodName, methodArgs);
         if (isPlatformServer(this.platformId)) {
-            console.log('isServer Data request...');
             let done: boolean = false;
             let data: any;
             this.ddpServer.call(methodName, methodArgs, (err, res) => {
@@ -45,11 +44,8 @@ export class DataService {
                 console.log('data recieved');
                 done = true;
             });
-            console.log('Waiting...');
             require('deasync').loopWhile(function() {return !done; });
-            console.log('Done Waiting...');
             this.transferState.set('server_data', data);
-            console.log('Set Transfer state...');
             return Observable.of(data);
         } else {
             let data = this.transferState.get('server_data');
@@ -61,7 +57,7 @@ export class DataService {
         }
     }
 
-    getCollection(collectionName: string, fields: string[]) {
+    getCollection(collectionName: string, fields?: string[]) {
         let data;
         if (isPlatformServer(this.platformId)) {
             const collection = this.ddpServer.collections[collectionName];
@@ -69,7 +65,8 @@ export class DataService {
             const _ = require('underscore');
             data = [];
             _.forEach(collection, (value, key) => {
-                data.push(_.pick(value, fields));
+                if (fields) data.push(_.pick(value, fields));
+                else data.push(value);
             });
             this.transferState.set('server_data', data);
             return  Observable.of(data || []);
@@ -82,6 +79,7 @@ export class DataService {
         }
         return this.MeteorObservable.call(collectionName);
     }
+
     getCollectionDataById(collectionName: string, id: string) {
         if (!this.ddpServer.collections[collectionName]) return;
         let data;

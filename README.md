@@ -20,13 +20,13 @@ Replace ROOT_URL in contants.js like above.
 ###### You can use npm, but it's recommended to use yarn as it installs a lot faster and has other benefits https://yarnpkg.com/ . Make sure you are using yarn version 0.16.0 or newer (check with 'yarn --version')
 
 ```bash
-git clone https://github.com/qdouble/angular-webpack-starter.git
+git clone https://github.com/ansaries/angular6-express-meteorjs-starter-webpack.git
 cd angular-webpack-starter
 yarn
 yarn start
 ```
 
-### [Material Branch without Universal (Server-side rendering) support](https://github.com/qdouble/angular-webpack-starter/tree/no-universal-support)
+### [Material Branch without Universal (Server-side rendering) support] NO SUPPORT OF METEORJS(https://github.com/qdouble/angular-webpack-starter/tree/no-universal-support)
 
 ### [Bootstrap Branch](https://github.com/qdouble/angular-webpack-starter/tree/bootstrap)
 

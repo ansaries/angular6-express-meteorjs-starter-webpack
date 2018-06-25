@@ -16,7 +16,7 @@ import * as fromRoot from './reducers';
 })
 export class AppComponent implements OnInit {
   mobile = false;
-  sideNavMode = MOBILE ? 'over' : 'side';
+  sideNavMode = false ? 'over' : 'side';
   views = views;
 
   constructor(

@@ -1,5 +1,5 @@
 /* tslint:disable no-console */
-let Package = {};
+
 const compression = require('compression');
 import { MeteorServer } from './app/api/meteor';
 import 'zone.js/dist/zone-node';

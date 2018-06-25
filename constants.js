@@ -7,7 +7,7 @@ exports.DEV_PORT = process.env.PORT || 3000;
 exports.E2E_PORT = process.env.PORT || 4201;
 exports.PROD_PORT = process.env.PORT || 8088;
 exports.UNIVERSAL_PORT = process.env.PORT || 8000;
-exports.ROOT_URL = process.env.ROOT_URL || 'foctest.meteorapp.com';
+exports.ROOT_URL = process.env.ROOT_URL || 'example-meteorjs-server.com';
 exports.SHOW_WEBPACK_BUNDLE_ANALYZER = false;
 
 /**

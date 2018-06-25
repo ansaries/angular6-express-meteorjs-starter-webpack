@@ -1,13 +1,11 @@
 import { Injectable, Inject, PLATFORM_ID, NgZone } from '@angular/core';
 import { TransferState } from '../../modules/transfer-state/transfer-state';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { ROOT_URL } from '../../../constants';
+import { isPlatformServer } from '@angular/common';
 import { Observable } from 'rxjs-compat';
 
 @Injectable()
 export class DataService {
-    Categories: Mongo.Collection<CATEGORY>;
-    Services: Mongo.Collection<SERVICE>;
+    Posts: Mongo.Collection<any>;
     ddpServer: any;
     MeteorObservable: any;
 
@@ -21,8 +19,7 @@ export class DataService {
             this.ddpServer = require('./meteor').MeteorServer;
         } else {
             this.MeteorObservable = require('meteor-rxjs').MeteorObservable;
-            this.Services = require('./collections').Services;
-            this.Categories = require('./collections').Categories;
+            this.Posts = require('./collections').Posts;
         }
 
     }
@@ -92,7 +89,7 @@ export class DataService {
             this.transferState.set('server_data', null);
             return Observable.of(data);
         }
-        // return this.MeteorObservable.call(collectionName)
+        return this.MeteorObservable.call(`${collectionName}ById`, id);
 
     }
 

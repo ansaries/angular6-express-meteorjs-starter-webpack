@@ -1,4 +1,17 @@
 # Complete starter seed project for Angular
+Clone of [angular-webpack-starter](https://github.com/qdouble/angular-webpack-starter) except it has following additional features:
+1. Meteor Client Side for connecting it with a MeteorJs Server.
+2. DDP for connecting Express Angular Universal Server with MeteorJs Server.
+3. Implemented a DataService which checks Platform Server/Browser and calls methods appropriately over DDP.
+4. Easy to implement Login, Files upload and other features as Meteor's Accounts and Jalik UFS's Client Side is already included in meteor-client.js in node modules.
+5. You can implement as many subscriptions as you want on Server using MeteorServer.subscribe('public_collection') in server.aot.ts and then call DataService.getCollection or DataService.getCollectionDataById and you will get cached data from express server upon each initial load. It will not even save many Express to MeteorJs roundtrips but it will even make it faster to load your public pages. Do not forget to implement appropriate methods/pubs with the collectionName in your MeteorJs server. 
+
+## Connecting with MeteorJs Server for both Browser and Express Server
+### Browser:
+Replace url in init.js from https://example-meteorjs-server.com to your meteorjs server ROOT_URL
+### Server:
+Replace ROOT_URL in contants.js like above.
+
 
 ## Material Branch with Universal (Server-side rendering) support
 

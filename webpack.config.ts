@@ -161,9 +161,13 @@ const commonConfig = function webpackConfig(): WebpackConfig {
         loaders: ['to-string-loader', 'css-loader', 'sass-loader']
       },
       ...MY_CLIENT_RULES
-    ]
+    ],
   };
-
+  // config.node = {
+  //   fs: 'empty',
+  //   net: 'empty',
+  //   tls: 'empty'
+  // };
   config.plugins = [
     new ProgressPlugin(),
     new CheckerPlugin(),
@@ -361,6 +365,13 @@ const defaultConfig = {
     extensions: ['.ts', '.js', '.json']
   },
   externals: [resolveExternals],
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    Buffer: true,
+    WebSocket: false,
+  }
 };
 
 if (!UNIVERSAL && !SERVER) {

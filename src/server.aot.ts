@@ -1,6 +1,7 @@
 /* tslint:disable no-console */
 let Package = {};
 const compression = require('compression');
+import { MeteorServer } from './app/api/meteor';
 import 'zone.js/dist/zone-node';
 import './polyfills.server';
 import * as express from 'express';
@@ -46,4 +47,22 @@ app.get('/data', (req, res) => {
 
 app.listen(UNIVERSAL_PORT, () => {
   console.log(`Listening at ${baseUrl}`);
+});
+
+
+MeteorServer.connect(function(error, wasReconnect) {
+  // If autoReconnect is true, this callback will be invoked each time
+  // a server connection is re-established
+  if (error) {
+    console.log('DDP connection error!');
+    return;
+  }
+
+  if (wasReconnect) {
+    console.log('Reestablishment of a connection.');
+  }
+
+  console.log('connected!');
+
+  MeteorServer.subscribe('services');
 });

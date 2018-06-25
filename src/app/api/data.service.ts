@@ -16,7 +16,6 @@ export class DataService {
         private zone: NgZone,
         private transferState: TransferState,
     ) {
-        console.log('Instantiating Service on Server...');
         if (isPlatformServer(this.platformId)) {
             const DDPClient = require('ddp');
             this.ddpServer = require('./meteor').MeteorServer;

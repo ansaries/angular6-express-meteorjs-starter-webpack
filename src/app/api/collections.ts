@@ -11,9 +11,6 @@ import { Mongo } from 'meteor/mongo';
 
 // An interface to create orgFind Method in Mong.Collection.
 
-
-// export const Services = <GroundBaseCollection<SERVICE>> new Mongo.Collection<SERVICE>('services');
-
 export const Services = new MongoObservable.Collection<SERVICE>('services');
 export const Categories = <GroundBaseCollection<CATEGORY>>
                             new Mongo.Collection<CATEGORY>('categories');

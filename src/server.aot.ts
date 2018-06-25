@@ -12,13 +12,14 @@ import { routes } from './server.routes';
 import { App } from './mock-api/app';
 import { enableProdMode } from '@angular/core';
 import { UNIVERSAL_PORT } from '../constants';
+import { DataService } from './app/api/data.service';
 enableProdMode();
 const app = express();
 const api = new App();
 const baseUrl = `http://localhost:${UNIVERSAL_PORT}`;
 
 app.engine('html', ngExpressEngine({
-  bootstrap: ServerAppModuleNgFactory
+  bootstrap: ServerAppModuleNgFactory,
 }));
 
 app.set('view engine', 'html');
@@ -49,8 +50,7 @@ app.listen(UNIVERSAL_PORT, () => {
   console.log(`Listening at ${baseUrl}`);
 });
 
-
-MeteorServer.connect(function(error, wasReconnect) {
+MeteorServer.connect((error, wasReconnect) => {
   // If autoReconnect is true, this callback will be invoked each time
   // a server connection is re-established
   if (error) {
@@ -63,6 +63,9 @@ MeteorServer.connect(function(error, wasReconnect) {
   }
 
   console.log('connected!');
-
-  MeteorServer.subscribe('services');
+  // // Do Subscriptions here...
+  MeteorServer.subscribe('services', [], () => {
+    console.log('Services Ready...');
+  });
 });
+

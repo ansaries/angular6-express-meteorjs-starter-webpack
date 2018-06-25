@@ -26,3 +26,4 @@ export declare const MY_TEST_PLUGINS: any[];
 export declare const MY_TEST_RULES: any[];
 
 export declare const EXCLUDE_SOURCE_MAPS: any[];
+export declare const ROOT_URL: string;

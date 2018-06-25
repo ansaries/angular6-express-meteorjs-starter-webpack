@@ -7,8 +7,13 @@ import { AppModule } from './app.module';
 import { TransferState } from '../modules/transfer-state/transfer-state';
 import { BrowserModule } from '@angular/platform-browser';
 import { filter, first } from 'rxjs/operators';
+import { DataService } from './api/data.service';
 
-export function onBootstrap(appRef: ApplicationRef, transferState: TransferState) {
+export function onBootstrap(
+  appRef: ApplicationRef,
+  transferState: TransferState,
+  // dataService: DataService
+) {
   return () => {
     appRef.isStable.pipe(
       filter(stable => stable),
@@ -28,9 +33,11 @@ export function onBootstrap(appRef: ApplicationRef, transferState: TransferState
       multi: true,
       deps: [
         ApplicationRef,
-        TransferState
+        TransferState,
+        // DataService,
       ]
-    }
+    },
+    // DataService,
   ],
   imports: [
     BrowserModule.withServerTransition({
